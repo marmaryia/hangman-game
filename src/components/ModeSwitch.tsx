@@ -27,10 +27,11 @@ function ModeSwitch({
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setChecked(event.target.checked);
+    setWordData({ word: undefined, definition: undefined });
   }
 
   function handleWordInput() {
-    setWordData({ word: selectedWord, definition: undefined });
+    setWordData({ word: selectedWord.toUpperCase(), definition: undefined });
     setSelectedWord("");
   }
 
