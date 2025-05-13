@@ -1,10 +1,15 @@
-import SecretWord from "./components/SecretWord";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import GamePage from "./components/GamePage";
 
 function App() {
   return (
     <>
       <h1>Hangman</h1>
-      <SecretWord />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/game" element={<GamePage />} />
+      </Routes>
     </>
   );
 }
