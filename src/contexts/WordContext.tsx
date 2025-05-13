@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { ReactNode } from "react";
 
-type WordToGuessType = { word: string | null; definition: string | null };
+import { WordToGuessType } from "../types";
 
 type WordContextType = {
   wordToGuess: WordToGuessType;
