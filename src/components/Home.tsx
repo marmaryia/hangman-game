@@ -31,7 +31,9 @@ function Home() {
 
   useEffect(() => {
     if (wordToGuess.word && playerMode) {
-      navigate(`/game?players=${playerMode}`, { state: wordToGuess });
+      navigate(`/game?players=${playerMode}`, {
+        state: { wordToGuess, setWordToGuess: setWordToGuess },
+      });
     }
   }, [wordToGuess]);
 
