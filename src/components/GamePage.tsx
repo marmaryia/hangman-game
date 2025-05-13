@@ -11,19 +11,21 @@ function GamePage() {
   const [wordRep, setWordRep] = useState<WordRep>([]);
 
   function handleKeyClick(letter: string) {
-    if (wordToGuess.word.includes(letter)) {
-      wordToGuess.word.split("").forEach((wordLetter: string, i: number) => {
-        if (wordLetter === letter) {
-          setWordRep((current) => {
-            const newRep = [...current];
-            current[i] = true;
-            return newRep;
-          });
-        }
-      });
-      return true;
-    }
-    return false;
+    let isCorrectLetter = false;
+
+    wordToGuess.word.split("").forEach((wordLetter: string, i: number) => {
+      if (wordLetter === letter) {
+        setWordRep((current) => {
+          const newRep = [...current];
+          newRep[i] = true;
+
+          return newRep;
+        });
+        isCorrectLetter = true;
+      }
+    });
+
+    return isCorrectLetter;
   }
 
   useEffect(() => {
