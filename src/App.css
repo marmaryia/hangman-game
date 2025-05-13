@@ -1,3 +1,11 @@
 #root {
   text-align: center;
 }
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}

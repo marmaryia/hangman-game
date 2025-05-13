@@ -11,7 +11,6 @@ function GamePage() {
   const [wordRep, setWordRep] = useState<WordRep>([]);
 
   function handleKeyClick(letter: string) {
-    console.log(letter);
     if (wordToGuess.word.includes(letter)) {
       wordToGuess.word.split("").forEach((wordLetter: string, i: number) => {
         if (wordLetter === letter) {
@@ -22,7 +21,9 @@ function GamePage() {
           });
         }
       });
+      return true;
     }
+    return false;
   }
 
   useEffect(() => {

@@ -33,13 +33,25 @@ function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
 
   return (
     <div>
-      {keys.map((key) => {
+      {keys.map((key, i) => {
         return (
           <button
             value={key.letter}
             key={key.letter}
+            disabled={key.state !== "unused"}
+            className={key.state}
             onClick={(e) => {
-              handleKeyClick((e.target as HTMLInputElement).value);
+              const isCorrect = handleKeyClick(
+                (e.target as HTMLInputElement).value
+              );
+              setKeys((current) => {
+                const newKeys = [...current];
+                newKeys[i] = {
+                  letter: current[i].letter,
+                  state: isCorrect ? "correct" : "incorrect",
+                };
+                return newKeys;
+              });
             }}
           >
             {key.letter}
