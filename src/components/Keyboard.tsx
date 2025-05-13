@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { WordContext } from "../contexts/WordContext";
+
 type Key = { letter: string; state: "unused" | "correct" | "incorrect" };
 
 function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
+  const { wordToGuess } = useContext(WordContext);
   const [keys, setKeys] = useState<Key[]>([
     { letter: "Q", state: "unused" },
     { letter: "W", state: "unused" },
@@ -30,6 +33,14 @@ function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
     { letter: "N", state: "unused" },
     { letter: "M", state: "unused" },
   ]);
+
+  useEffect(() => {
+    setKeys((currentKeys) => {
+      return currentKeys.map((key) => {
+        return { ...key, state: "unused" };
+      });
+    });
+  }, [wordToGuess]);
 
   return (
     <div>
