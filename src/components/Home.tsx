@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Popup from "reactjs-popup";
 import { useNavigate } from "react-router-dom";
 
 import { data } from "../assets/dictionary.ts";
 import generateWord from "../utils/generateWord";
+import { WordContext } from "../contexts/WordContext.tsx";
 
 function Home() {
-  const [wordToGuess, setWordToGuess] = useState<{
-    word: null | string;
-    definition: null | string;
-  }>({ word: null, definition: null });
+  const { wordToGuess, setWordToGuess } = useContext(WordContext);
   const [playerMode, setPlayerMode] = useState<null | 1 | 2>(null);
   const [userChosenWord, setUserChosenWord] = useState("");
 
@@ -31,9 +29,7 @@ function Home() {
 
   useEffect(() => {
     if (wordToGuess.word && playerMode) {
-      navigate(`/game?players=${playerMode}`, {
-        state: { wordToGuess, setWordToGuess: setWordToGuess },
-      });
+      navigate(`/game?players=${playerMode}`);
     }
   }, [wordToGuess]);
 
