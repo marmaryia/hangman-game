@@ -1,14 +1,19 @@
-import generateWord from "../utils/generateWord";
-import { useContext, useState } from "react";
-import { WordContext } from "../contexts/WordContext";
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
+import { useNavigate } from "react-router-dom";
+
 import { data } from "../assets/dictionary.ts";
+import generateWord from "../utils/generateWord";
 
 function Home() {
-  const { wordToGuess, setWordToGuess } = useContext(WordContext);
+  const [wordToGuess, setWordToGuess] = useState<{
+    word: null | string;
+    definition: null | string;
+  }>({ word: null, definition: null });
   const [playerMode, setPlayerMode] = useState<null | 1 | 2>(null);
   const [userChosenWord, setUserChosenWord] = useState("");
+
+  const navigate = useNavigate();
 
   function handleSinglePlayer() {
     setWordToGuess(generateWord());
@@ -23,7 +28,13 @@ function Home() {
     });
     setPlayerMode(2);
   }
-  console.log(wordToGuess);
+
+  useEffect(() => {
+    if (wordToGuess.word && playerMode) {
+      navigate(`/game?players=${playerMode}`, { state: wordToGuess });
+    }
+  }, [wordToGuess]);
+
   return (
     <section>
       <h2>
@@ -40,7 +51,7 @@ function Home() {
             trigger={<button>Two players</button>}
             modal
             position={"center center"}
-            closeOnDocumentClick={false}
+            closeOnDocumentClick={true}
           >
             <form action="submit" onSubmit={handleTwoPlayers}>
               <label htmlFor="wordToGuess">
@@ -64,9 +75,6 @@ function Home() {
           <p>Guess a word carefully chosen by a friend</p>
         </div>
       </div>
-      {playerMode && wordToGuess.word && (
-        <Navigate to={`/game?players=${playerMode}`} />
-      )}
     </section>
   );
 }
