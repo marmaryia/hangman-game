@@ -5,7 +5,6 @@ import GamePage from "./components/GamePage";
 function App() {
   return (
     <>
-      <h1>Hangman</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/game" element={<GamePage />} />

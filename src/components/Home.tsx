@@ -29,20 +29,34 @@ function Home() {
   }, [wordToGuess]);
 
   return (
-    <section>
-      <h2>
-        Welcome! Would you like to compete against the computer or play with a
-        buddy?
-      </h2>
-      <div>
-        <div>
-          <button onClick={handleSinglePlayer}>Single player</button>
-          <p>Guess a randomly generated word</p>
-        </div>
-        <div>
-          <button onClick={handleTwoPlayers}>Two players</button>
-          <p>Guess a word carefully chosen by a friend</p>
-          <ChooseWordPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
+    <section className="landing-page-container">
+      <header>
+        <h1 className="header-text">The Hangman</h1>
+        <h2 className="header-text">The same game with a positive spin</h2>
+        <img
+          className="washing-machine-img"
+          src="washing-machine.png"
+          alt="washing machine icon"
+        />
+      </header>
+      <div className="landing-page-body">
+        <h1>Welcome!</h1>
+        <h2>
+          Would you like to compete against the computer or play with a buddy?
+        </h2>
+        <div className="mode-container">
+          <div className="mode-box">
+            <button onClick={handleSinglePlayer}>Single player</button>
+            <p className="mode-explanation">Guess a randomly generated word</p>
+          </div>
+          <div className="mode-box">
+            <button onClick={handleTwoPlayers}>Two players</button>
+            <p className="mode-explanation">Guess a word chosen by a friend</p>
+            <ChooseWordPopup
+              popupOpen={popupOpen}
+              setPopupOpen={setPopupOpen}
+            />
+          </div>
         </div>
       </div>
     </section>
