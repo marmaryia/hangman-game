@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
-import Popup from "reactjs-popup";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { data } from "../assets/dictionary.ts";
 import generateWord from "../utils/generateWord";
+import { WordContext } from "../contexts/WordContext.tsx";
+import ChooseWordPopup from "./ChooseWordPopup.tsx";
 
 function Home() {
-  const [wordToGuess, setWordToGuess] = useState<{
-    word: null | string;
-    definition: null | string;
-  }>({ word: null, definition: null });
+  const { wordToGuess, setWordToGuess } = useContext(WordContext);
   const [playerMode, setPlayerMode] = useState<null | 1 | 2>(null);
-  const [userChosenWord, setUserChosenWord] = useState("");
+  const [popupOpen, setPopupOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -20,18 +17,14 @@ function Home() {
     setPlayerMode(1);
   }
 
-  function handleTwoPlayers(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setWordToGuess({
-      word: userChosenWord,
-      definition: data[userChosenWord] ? data[userChosenWord] : null,
-    });
+  function handleTwoPlayers() {
+    setPopupOpen(true);
     setPlayerMode(2);
   }
 
   useEffect(() => {
     if (wordToGuess.word && playerMode) {
-      navigate(`/game?players=${playerMode}`, { state: wordToGuess });
+      navigate(`/game?players=${playerMode}`);
     }
   }, [wordToGuess]);
 
@@ -47,32 +40,9 @@ function Home() {
           <p>Guess a randomly generated word</p>
         </div>
         <div>
-          <Popup
-            trigger={<button>Two players</button>}
-            modal
-            position={"center center"}
-            closeOnDocumentClick={true}
-          >
-            <form action="submit" onSubmit={handleTwoPlayers}>
-              <label htmlFor="wordToGuess">
-                One of the players chooses a word (3 to 13 characters):
-              </label>
-              <br />
-              <input
-                type="password"
-                name="wordToGuess"
-                id="wordToGuess"
-                minLength={3}
-                maxLength={13}
-                onChange={(e) => {
-                  setUserChosenWord(e.target.value.toUpperCase());
-                }}
-              />
-              <button type="submit">Confirm</button>
-            </form>
-          </Popup>
-
+          <button onClick={handleTwoPlayers}>Two players</button>
           <p>Guess a word carefully chosen by a friend</p>
+          <ChooseWordPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
         </div>
       </div>
     </section>

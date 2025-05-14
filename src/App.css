@@ -9,3 +9,10 @@
 .incorrect {
   background-color: red;
 }
+
+.life-icon {
+  background-color: white;
+  width: 50px;
+  border-radius: 25px;
+  margin: 2px;
+}

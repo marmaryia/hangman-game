@@ -5,11 +5,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import "./App.css";
 import App from "./App.tsx";
+import { WordProvider } from "./contexts/WordContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <WordProvider>
+        <App />
+      </WordProvider>
     </BrowserRouter>
   </StrictMode>
 );
