@@ -34,6 +34,21 @@ function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
     { letter: "M", state: "unused" },
   ]);
 
+  function handleButtonPress(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    i: number
+  ) {
+    const isCorrect = handleKeyClick((e.target as HTMLInputElement).value);
+    setKeys((current) => {
+      const newKeys = [...current];
+      newKeys[i] = {
+        letter: current[i].letter,
+        state: isCorrect ? "correct" : "incorrect",
+      };
+      return newKeys;
+    });
+  }
+
   useEffect(() => {
     setKeys((currentKeys) => {
       return currentKeys.map((key) => {
@@ -43,32 +58,58 @@ function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
   }, [wordToGuess]);
 
   return (
-    <div>
-      {keys.map((key, i) => {
-        return (
-          <button
-            value={key.letter}
-            key={key.letter}
-            disabled={key.state !== "unused"}
-            className={key.state}
-            onClick={(e) => {
-              const isCorrect = handleKeyClick(
-                (e.target as HTMLInputElement).value
-              );
-              setKeys((current) => {
-                const newKeys = [...current];
-                newKeys[i] = {
-                  letter: current[i].letter,
-                  state: isCorrect ? "correct" : "incorrect",
-                };
-                return newKeys;
-              });
-            }}
-          >
-            {key.letter}
-          </button>
-        );
-      })}
+    <div className="keyboard">
+      <div className="keyboard-row-one">
+        {keys.slice(0, 10).map((key, i) => {
+          return (
+            <button
+              value={key.letter}
+              key={key.letter}
+              disabled={key.state !== "unused"}
+              className={"key " + key.state}
+              onClick={(e) => {
+                handleButtonPress(e, i);
+              }}
+            >
+              {key.letter}
+            </button>
+          );
+        })}
+      </div>
+      <div className="keyboard-row-two">
+        {keys.slice(10, 19).map((key, i) => {
+          return (
+            <button
+              value={key.letter}
+              key={key.letter}
+              disabled={key.state !== "unused"}
+              className={"key " + key.state}
+              onClick={(e) => {
+                handleButtonPress(e, 10 + i);
+              }}
+            >
+              {key.letter}
+            </button>
+          );
+        })}
+      </div>
+      <div className="keyboard-row-three">
+        {keys.slice(19).map((key, i) => {
+          return (
+            <button
+              value={key.letter}
+              key={key.letter}
+              disabled={key.state !== "unused"}
+              className={"key " + key.state}
+              onClick={(e) => {
+                handleButtonPress(e, 19 + i);
+              }}
+            >
+              {key.letter}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
