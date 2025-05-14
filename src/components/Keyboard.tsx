@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { WordContext } from "../contexts/WordContext";
 
-type Key = { letter: string; state: "unused" | "correct" | "incorrect" };
+import { Key } from "../types";
 
 function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
   const { wordToGuess } = useContext(WordContext);

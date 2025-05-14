@@ -5,15 +5,7 @@ import { WordContext } from "../contexts/WordContext";
 import generateWord from "../utils/generateWord";
 import ChooseWordPopup from "./ChooseWordPopup";
 
-function GameOverPopup({
-  win,
-  setGameOver,
-  setLives,
-}: {
-  win: boolean;
-  setGameOver: Function;
-  setLives: Function;
-}) {
+function GameOverPopup({ win }: { win: boolean }) {
   const { wordToGuess, setWordToGuess } = useContext(WordContext);
   const [searchParams, _] = useSearchParams();
   const [popupOpen, setPopupOpen] = useState(true);

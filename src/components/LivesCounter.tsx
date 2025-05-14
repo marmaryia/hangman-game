@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function LivesCounter({ lives }: { lives: number }) {
   return (
     <div>

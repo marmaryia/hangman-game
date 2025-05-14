@@ -6,8 +6,7 @@ import Keyboard from "./Keyboard";
 import LivesCounter from "./LivesCounter";
 import GameOverPopup from "./GameOverPopup";
 import { WordContext } from "../contexts/WordContext";
-
-type WordRep = [] | boolean[];
+import { WordRep } from "../types";
 
 function GamePage() {
   const { wordToGuess } = useContext(WordContext);
@@ -58,13 +57,7 @@ function GamePage() {
 
   return (
     <section>
-      {gameOver && (
-        <GameOverPopup
-          win={!!lives}
-          setGameOver={setGameOver}
-          setLives={setLives}
-        />
-      )}
+      {gameOver && <GameOverPopup win={!!lives} />}
       <LivesCounter lives={lives} />
       <WordRepresentation word={wordToGuess.word} wordRep={wordRep} />
       <Keyboard handleKeyClick={handleKeyClick} />
