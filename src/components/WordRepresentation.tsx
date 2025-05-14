@@ -1,3 +1,5 @@
+import HangingShirt from "./HangingShirt";
+
 function WordRepresentation({
   wordRep,
   word,
@@ -6,14 +8,10 @@ function WordRepresentation({
   word: string;
 }) {
   return (
-    <div>
-      <p>
-        {wordRep
-          .map((rep, i) => {
-            return rep ? word[i] : "_";
-          })
-          .join(" ")}
-      </p>
+    <div className="word-rep-container">
+      {wordRep.map((rep, i) => {
+        return <HangingShirt letter={rep ? word[i] : ""} />;
+      })}
     </div>
   );
 }

@@ -25,8 +25,10 @@ function GameOverPopup({ win }: { win: boolean }) {
     <div>
       <Popup
         open={popupOpen}
+        modal
         closeOnDocumentClick={false}
         closeOnEscape={false}
+        className="game-over-popup"
       >
         <h3>You {win ? "won" : "lost"}!</h3>
         <p>The word was {wordToGuess.word}</p>
