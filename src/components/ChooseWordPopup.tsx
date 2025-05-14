@@ -29,6 +29,7 @@ function ChooseWordPopup({
       position={"center center"}
       closeOnDocumentClick={true}
       open={popupOpen}
+      onClose={() => setPopupOpen(false)}
     >
       <form action="submit" onSubmit={handleWordSubmit}>
         <label htmlFor="wordToGuess">

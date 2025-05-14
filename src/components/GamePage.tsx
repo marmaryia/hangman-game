@@ -52,6 +52,8 @@ function GamePage() {
 
   useEffect(() => {
     setWordRep(new Array(wordToGuess.word!.length).fill(false));
+    setGameOver(false);
+    setLives(7);
   }, [wordToGuess]);
 
   return (
