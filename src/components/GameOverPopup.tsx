@@ -7,12 +7,13 @@ import ChooseWordPopup from "./ChooseWordPopup";
 
 function GameOverPopup({ win }: { win: boolean }) {
   const { wordToGuess, setWordToGuess } = useContext(WordContext);
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [popupOpen, setPopupOpen] = useState(true);
   const [wordInputPopupOpen, setWordInputPopupOpen] = useState<boolean>(false);
   const numberOfPlayers = searchParams.get("players");
 
   function handleNewGame() {
+    setPopupOpen(false);
     if (numberOfPlayers === "1") {
       setWordToGuess(generateWord());
       setPopupOpen(false);
