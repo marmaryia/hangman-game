@@ -31,7 +31,8 @@ function ChooseWordPopup({
     <Popup
       modal
       position={"center center"}
-      closeOnDocumentClick={true}
+      closeOnDocumentClick={false}
+      closeOnEscape={false}
       open={popupOpen}
       onClose={() => setPopupOpen(false)}
     >
@@ -57,14 +58,22 @@ function ChooseWordPopup({
           <button
             type="submit"
             disabled={
-              userChosenWord.length <= 3 ||
-              userChosenWord.length >= 13 ||
+              userChosenWord.length < 3 ||
+              userChosenWord.length > 13 ||
               !/^[a-zA-Z]+$/.test(userChosenWord)
             }
           >
             Confirm
           </button>
-          <button>Cancel</button>
+          <button
+            type="button"
+            onClick={() => {
+              setPopupOpen(false);
+              setWordToGuess({ word: null, definition: null });
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </Popup>
