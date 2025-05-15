@@ -23,11 +23,13 @@ h1 {
   font-size: 5em;
   line-height: 1.1;
   margin: 0;
-  padding: 0.2em;
+  padding: 16px;
 }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 16px;
 }
 
 .link-to-home,
