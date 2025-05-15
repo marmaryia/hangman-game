@@ -7,9 +7,9 @@ function Header() {
       <h2 className="header-text">The same game with a positive spin</h2>
       <Link to="/" className="header-link">
         <img
-          className="washing-machine-img"
-          src="washing-machine.png"
+          src="public/washing-machine.png"
           alt="washing machine icon"
+          className="washing-machine-img"
         />
       </Link>
     </header>
