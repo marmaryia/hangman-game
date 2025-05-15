@@ -23,6 +23,10 @@ function ChooseWordPopup({
     setPopupOpen(false);
   }
 
+  function handleWordInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setUserChosenWord(e.target.value.toUpperCase());
+  }
+
   return (
     <Popup
       modal
@@ -41,14 +45,27 @@ function ChooseWordPopup({
           type="password"
           name="wordToGuess"
           id="wordToGuess"
-          minLength={3}
-          maxLength={13}
-          onChange={(e) => {
-            setUserChosenWord(e.target.value.toUpperCase());
-          }}
-        />{" "}
+          onChange={handleWordInput}
+        />
         <br />
-        <button type="submit">Confirm</button>
+        {userChosenWord.length > 0 && !/^[a-zA-Z]+$/.test(userChosenWord) && (
+          <p className="word-input-warning">
+            No spaces, numbers or special characters!
+          </p>
+        )}
+        <div className="go-popup-buttons-container">
+          <button
+            type="submit"
+            disabled={
+              userChosenWord.length <= 3 ||
+              userChosenWord.length >= 13 ||
+              !/^[a-zA-Z]+$/.test(userChosenWord)
+            }
+          >
+            Confirm
+          </button>
+          <button>Cancel</button>
+        </div>
       </form>
     </Popup>
   );

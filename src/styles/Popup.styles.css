@@ -41,3 +41,9 @@ input {
 .go-popup-text {
   margin: 0.5em;
 }
+
+.word-input-warning {
+  margin-top: 0;
+  color: red;
+  font-style: italic;
+}
