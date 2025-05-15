@@ -29,19 +29,19 @@ function Home() {
   }, [wordToGuess]);
 
   return (
-    <section>
+    <section className="landing-page-body">
+      <h1>Welcome!</h1>
       <h2>
-        Welcome! Would you like to compete against the computer or play with a
-        buddy?
+        Would you like to compete against the computer or play with a buddy?
       </h2>
-      <div>
-        <div>
+      <div className="mode-container">
+        <div className="mode-box">
           <button onClick={handleSinglePlayer}>Single player</button>
-          <p>Guess a randomly generated word</p>
+          <p className="mode-explanation">Guess a randomly generated word</p>
         </div>
-        <div>
+        <div className="mode-box">
           <button onClick={handleTwoPlayers}>Two players</button>
-          <p>Guess a word carefully chosen by a friend</p>
+          <p className="mode-explanation">Guess a word chosen by a friend</p>
           <ChooseWordPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
         </div>
       </div>

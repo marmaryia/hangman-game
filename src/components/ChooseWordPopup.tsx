@@ -33,7 +33,8 @@ function ChooseWordPopup({
     >
       <form action="submit" onSubmit={handleWordSubmit}>
         <label htmlFor="wordToGuess">
-          One of the players chooses a word (3 to 13 characters):
+          <h3>Two-player mode!</h3>
+          <p>One of the players chooses a word (3 to 13 characters):</p>
         </label>
         <br />
         <input
@@ -45,7 +46,8 @@ function ChooseWordPopup({
           onChange={(e) => {
             setUserChosenWord(e.target.value.toUpperCase());
           }}
-        />
+        />{" "}
+        <br />
         <button type="submit">Confirm</button>
       </form>
     </Popup>

@@ -25,14 +25,23 @@ function GameOverPopup({ win }: { win: boolean }) {
     <div>
       <Popup
         open={popupOpen}
+        modal
         closeOnDocumentClick={false}
         closeOnEscape={false}
+        position={"center center"}
+        className="game-over-popup"
       >
         <h3>You {win ? "won" : "lost"}!</h3>
-        <p>The word was {wordToGuess.word}</p>
-        {wordToGuess.definition && <p>"{wordToGuess.definition}"</p>}
-        <button onClick={handleNewGame}>Play again</button>
-        <Link to={"/"}>To main page</Link>
+        <p className="go-popup-text">The word was {wordToGuess.word}</p>
+        {wordToGuess.definition && (
+          <p className="go-popup-text">"{wordToGuess.definition}"</p>
+        )}
+        <div className="go-popup-buttons-container">
+          <button onClick={handleNewGame}>Play again</button>
+          <Link className="link-to-home" to={"/"}>
+            To main page
+          </Link>
+        </div>
       </Popup>
       <ChooseWordPopup
         popupOpen={wordInputPopupOpen}

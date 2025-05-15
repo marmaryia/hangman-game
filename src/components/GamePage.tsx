@@ -56,7 +56,7 @@ function GamePage() {
   }, [wordToGuess]);
 
   return (
-    <section>
+    <section className="page-body">
       {gameOver && <GameOverPopup win={!!lives} />}
       <LivesCounter lives={lives} />
       <WordRepresentation word={wordToGuess.word} wordRep={wordRep} />
