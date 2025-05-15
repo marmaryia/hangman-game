@@ -30,6 +30,7 @@ h2 {
   font-size: 2.5em;
 }
 
+.link-to-home,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -38,13 +39,21 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  background-color: beige;
+  background-color: gray;
+  color: white;
   transition: border-color 0.25s;
 }
+.link-to-home:hover,
 button:hover {
   border-color: #646cff;
 }
+.link-to-home:focus,
 button:focus,
+.link-to-home:focus-visible,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+a {
+  text-decoration: none;
 }

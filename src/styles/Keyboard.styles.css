@@ -1,0 +1,26 @@
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: center;
+}
+
+.key {
+  width: 70px;
+  height: 60px;
+  padding: 0;
+}

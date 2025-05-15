@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { WordContext } from "../contexts/WordContext";
 
 import { Key } from "../types";
+import KeyButton from "./KeyButton";
 
 function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
   const { wordToGuess } = useContext(WordContext);
@@ -59,54 +60,39 @@ function Keyboard({ handleKeyClick }: { handleKeyClick: Function }) {
 
   return (
     <div className="keyboard">
-      <div className="keyboard-row-one">
+      <div className="keyboard-row">
         {keys.slice(0, 10).map((key, i) => {
           return (
-            <button
-              value={key.letter}
+            <KeyButton
+              letterKey={key}
+              i={i}
+              handleButtonPress={handleButtonPress}
               key={key.letter}
-              disabled={key.state !== "unused"}
-              className={"key " + key.state}
-              onClick={(e) => {
-                handleButtonPress(e, i);
-              }}
-            >
-              {key.letter}
-            </button>
+            />
           );
         })}
       </div>
-      <div className="keyboard-row-two">
+      <div className="keyboard-row">
         {keys.slice(10, 19).map((key, i) => {
           return (
-            <button
-              value={key.letter}
+            <KeyButton
+              letterKey={key}
+              i={10 + i}
+              handleButtonPress={handleButtonPress}
               key={key.letter}
-              disabled={key.state !== "unused"}
-              className={"key " + key.state}
-              onClick={(e) => {
-                handleButtonPress(e, 10 + i);
-              }}
-            >
-              {key.letter}
-            </button>
+            />
           );
         })}
       </div>
-      <div className="keyboard-row-three">
+      <div className="keyboard-row">
         {keys.slice(19).map((key, i) => {
           return (
-            <button
-              value={key.letter}
+            <KeyButton
+              letterKey={key}
+              i={19 + i}
+              handleButtonPress={handleButtonPress}
               key={key.letter}
-              disabled={key.state !== "unused"}
-              className={"key " + key.state}
-              onClick={(e) => {
-                handleButtonPress(e, 19 + i);
-              }}
-            >
-              {key.letter}
-            </button>
+            />
           );
         })}
       </div>
